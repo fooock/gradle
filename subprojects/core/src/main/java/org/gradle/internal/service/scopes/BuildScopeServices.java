@@ -76,8 +76,6 @@ import org.gradle.caching.configuration.internal.DefaultBuildCacheConfiguration;
 import org.gradle.caching.configuration.internal.DefaultBuildCacheServiceRegistration;
 import org.gradle.caching.internal.BuildCacheServiceProvider;
 import org.gradle.caching.internal.DirectoryBuildCacheServiceFactory;
-import org.gradle.caching.internal.tasks.TaskExecutionStatisticsEventAdapter;
-import org.gradle.caching.internal.tasks.statistics.TaskExecutionStatisticsListener;
 import org.gradle.caching.local.DirectoryBuildCache;
 import org.gradle.configuration.BuildConfigurer;
 import org.gradle.configuration.DefaultBuildConfigurer;
@@ -392,10 +390,6 @@ public class BuildScopeServices extends DefaultServiceRegistry {
 
     protected ProfileEventAdapter createProfileEventAdapter() {
         return new ProfileEventAdapter(get(BuildRequestMetaData.class), get(TimeProvider.class), get(ListenerManager.class).getBroadcaster(ProfileListener.class));
-    }
-
-    protected TaskExecutionStatisticsEventAdapter createTaskExecutionStatisticsEventAdapter(ListenerManager listenerManager) {
-        return new TaskExecutionStatisticsEventAdapter(listenerManager.getBroadcaster(TaskExecutionStatisticsListener.class));
     }
 
     protected PluginRegistry createPluginRegistry(ClassLoaderScopeRegistry scopeRegistry, PluginInspector pluginInspector) {

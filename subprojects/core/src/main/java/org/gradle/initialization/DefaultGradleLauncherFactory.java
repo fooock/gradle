@@ -24,13 +24,11 @@ import org.gradle.api.internal.changedetection.state.GlobalScopeFileTimeStampIns
 import org.gradle.api.logging.Logging;
 import org.gradle.api.logging.StandardOutputListener;
 import org.gradle.api.logging.configuration.ShowStacktrace;
-import org.gradle.caching.internal.tasks.TaskExecutionStatisticsEventAdapter;
 import org.gradle.configuration.BuildConfigurer;
 import org.gradle.deployment.internal.DeploymentRegistry;
 import org.gradle.execution.BuildConfigurationActionExecuter;
 import org.gradle.execution.BuildExecuter;
 import org.gradle.internal.buildevents.BuildLogger;
-import org.gradle.internal.buildevents.CacheStatisticsReporter;
 import org.gradle.internal.buildevents.ProjectEvaluationLogger;
 import org.gradle.internal.buildevents.TaskExecutionLogger;
 import org.gradle.internal.classpath.ClassPath;
@@ -142,11 +140,6 @@ public class DefaultGradleLauncherFactory implements GradleLauncherFactory {
         listenerManager.useLogger(new TaskExecutionLogger(serviceRegistry.get(ProgressLoggerFactory.class), loggerProvider));
         if (parent == null) {
             listenerManager.useLogger(new BuildLogger(Logging.getLogger(BuildLogger.class), serviceRegistry.get(StyledTextOutputFactory.class), startParameter, requestMetaData));
-        }
-
-        if (startParameter.isBuildCacheEnabled()) {
-            listenerManager.addListener(serviceRegistry.get(TaskExecutionStatisticsEventAdapter.class));
-            listenerManager.addListener(new CacheStatisticsReporter(serviceRegistry.get(StyledTextOutputFactory.class)));
         }
 
         listenerManager.addListener(serviceRegistry.get(ProfileEventAdapter.class));
