@@ -53,13 +53,13 @@ class BuildResultLoggerIntegrationTest extends AbstractIntegrationSpec {
         run "adHocTask", "executedTask"
 
         then:
-        output.contains "2 actionable tasks: 0 (0%) AVOIDED, 2 (100%) EXECUTED"
+        output.contains "2 actionable tasks: 2 EXECUTED, 0 AVOIDED (0%)"
 
         when:
         run "adHocTask", "executedTask"
 
         then:
-        output.contains "2 actionable tasks: 1 (50%) AVOIDED, 1 (50%) EXECUTED"
+        output.contains "2 actionable tasks: 1 EXECUTED, 1 AVOIDED (50%)"
     }
 
     def "tasks with no actions are not counted in stats"() {
@@ -67,7 +67,7 @@ class BuildResultLoggerIntegrationTest extends AbstractIntegrationSpec {
         run "noActions"
 
         then:
-        output.contains "1 actionable tasks: 0 (0%) AVOIDED, 1 (100%) EXECUTED"
+        output.contains "1 actionable tasks: 1 EXECUTED, 0 AVOIDED (0%)"
     }
 
     def "skipped tasks are not counted"() {

@@ -49,6 +49,6 @@ class TaskOutcomeStatisticsReporterTest extends Specification {
         reporter.buildFinished(1, 2)
 
         then:
-        TextUtil.normaliseLineSeparators(textOutputFactory as String) == "{org.gradle.internal.buildevents.BuildResultLogger}{LIFECYCLE}3 actionable tasks: 1 (33%) AVOIDED, 2 (67%) EXECUTED\n"
+        TextUtil.normaliseLineSeparators(textOutputFactory as String) == "{org.gradle.internal.buildevents.BuildResultLogger}{LIFECYCLE}3 actionable tasks: 2 EXECUTED, 1 AVOIDED (33%)\n"
     }
 }
