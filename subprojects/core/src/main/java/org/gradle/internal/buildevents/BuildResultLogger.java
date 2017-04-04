@@ -46,8 +46,8 @@ public class BuildResultLogger extends BuildAdapter {
         } else {
             textOutput.withStyle(Failure).text(action + " FAILED");
         }
-        textOutput.println();
-        textOutput.println();
-        textOutput.formatln("Total time: %s", buildTimeClock.getElapsed());
+
+        // TODO: use buildTimeClock.getElapsedMillis() + terse duration formatter
+        textOutput.formatln(" in %s", buildTimeClock.getElapsed());
     }
 }

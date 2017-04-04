@@ -57,7 +57,7 @@ public class BuildResultLoggerTest {
 
         listener.buildFinished(new BuildResult("Action", null, null));
 
-        assertEquals("\n{success}ACTION SUCCESSFUL{normal}\n\nTotal time: 10s\n", textOutput.getValue());
+        assertEquals("\n{success}ACTION SUCCESSFUL{normal} in 10s\n", textOutput.getValue());
     }
 
     @Test
@@ -71,6 +71,6 @@ public class BuildResultLoggerTest {
 
         listener.buildFinished(new BuildResult("Action", null, new RuntimeException()));
 
-        assertEquals("\n{failure}ACTION FAILED{normal}\n\nTotal time: 10s\n", textOutput.getValue());
+        assertEquals("\n{failure}ACTION FAILED{normal} in 10s\n", textOutput.getValue());
     }
 }

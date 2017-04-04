@@ -60,9 +60,15 @@ public class ExecuteActionsTaskExecuter implements TaskExecuter {
 
     public void execute(TaskInternal task, TaskStateInternal state, TaskExecutionContext context) {
         listener.beforeActions(task);
-        if (!task.getTaskActions().isEmpty()) {
+
+        // A task is "actionable" if and only if it has actions.
+        // For example, lifecycle tasks like :check are not actionable
+        final boolean actionable = !task.getTaskActions().isEmpty();
+        state.setActionable(actionable);
+        if (actionable) {
             outputsGenerationListener.beforeTaskOutputsGenerated();
         }
+
         state.setExecuting(true);
         try {
             GradleException failure = executeActions(task, state, context);
