@@ -35,7 +35,7 @@ public class TaskOutcomeStatisticsReporter {
         if (total > 0) {
             final long avoidedPercentage = Math.round(tasksAvoided * 100.0 / total);
             StyledTextOutput textOutput = textOutputFactory.create(BuildResultLogger.class, LogLevel.LIFECYCLE);
-            textOutput.formatln("%d actionable tasks: %d EXECUTED, %d AVOIDED (%d%%)", total, tasksExecuted, tasksAvoided, avoidedPercentage);
+            textOutput.formatln("%d actionable tasks: %d executed, %d avoided (%d%%)", total, tasksExecuted, tasksAvoided, avoidedPercentage);
         }
     }
 }
