@@ -128,7 +128,7 @@ project.logger.debug("debug logging");
     }
 
     String normaliseOutput(String output) {
-        return output.replaceFirst("Total time: .+ secs", "Total time: 0 secs")
+        return output.replaceFirst(" in .+s", " in 0s")
     }
 
     void shouldNotContainProviderLogging(String output) {
