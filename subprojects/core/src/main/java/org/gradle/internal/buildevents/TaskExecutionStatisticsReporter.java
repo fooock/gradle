@@ -21,10 +21,10 @@ import org.gradle.api.logging.LogLevel;
 import org.gradle.internal.logging.text.StyledTextOutput;
 import org.gradle.internal.logging.text.StyledTextOutputFactory;
 
-public class TaskOutcomeStatisticsReporter implements TaskExecutionStatisticsListener {
+public class TaskExecutionStatisticsReporter implements TaskExecutionStatisticsListener {
     private final StyledTextOutputFactory textOutputFactory;
 
-    public TaskOutcomeStatisticsReporter(StyledTextOutputFactory textOutputFactory) {
+    public TaskExecutionStatisticsReporter(StyledTextOutputFactory textOutputFactory) {
         this.textOutputFactory = textOutputFactory;
     }
 

@@ -23,10 +23,10 @@ import org.gradle.util.TextUtil
 import spock.lang.Specification
 import spock.lang.Subject
 
-@Subject(TaskOutcomeStatisticsReporter)
-class TaskOutcomeStatisticsReporterTest extends Specification {
+@Subject(TaskExecutionStatisticsReporter)
+class TaskExecutionStatisticsReporterTest extends Specification {
     private StyledTextOutputFactory textOutputFactory = new TestStyledTextOutputFactory()
-    private TaskOutcomeStatisticsReporter reporter = new TaskOutcomeStatisticsReporter(textOutputFactory)
+    private TaskExecutionStatisticsReporter reporter = new TaskExecutionStatisticsReporter(textOutputFactory)
 
     def "does not report statistics given 0 tasks"() {
         when:

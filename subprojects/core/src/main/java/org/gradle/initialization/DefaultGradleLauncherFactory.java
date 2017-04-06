@@ -32,7 +32,7 @@ import org.gradle.execution.BuildExecuter;
 import org.gradle.internal.buildevents.BuildLogger;
 import org.gradle.internal.buildevents.ProjectEvaluationLogger;
 import org.gradle.internal.buildevents.TaskExecutionLogger;
-import org.gradle.internal.buildevents.TaskOutcomeStatisticsReporter;
+import org.gradle.internal.buildevents.TaskExecutionStatisticsReporter;
 import org.gradle.internal.classpath.ClassPath;
 import org.gradle.internal.cleanup.BuildOutputCleanupListener;
 import org.gradle.internal.concurrent.Stoppable;
@@ -145,7 +145,7 @@ public class DefaultGradleLauncherFactory implements GradleLauncherFactory {
         }
 
         listenerManager.addListener(serviceRegistry.get(TaskExecutionStatisticsEventAdapter.class));
-        listenerManager.addListener(new TaskOutcomeStatisticsReporter(serviceRegistry.get(StyledTextOutputFactory.class)));
+        listenerManager.addListener(new TaskExecutionStatisticsReporter(serviceRegistry.get(StyledTextOutputFactory.class)));
 
         listenerManager.addListener(serviceRegistry.get(ProfileEventAdapter.class));
         if (startParameter.isProfile()) {
