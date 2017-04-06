@@ -67,7 +67,7 @@ class BuildResultLoggerIntegrationTest extends AbstractIntegrationSpec {
         run "noActions"
 
         then:
-        output.contains "1 actionable tasks: 1 executed, 0 avoided (0%)"
+        output.contains "1 actionable task: 1 executed, 0 avoided (0%)"
     }
 
     def "skipped tasks are not counted"() {

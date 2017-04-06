@@ -45,6 +45,14 @@ class TaskOutcomeStatisticsReporterTest extends Specification {
         thrown IllegalArgumentException
     }
 
+    def "properly pluralizes output"() {
+        when:
+        reporter.buildFinished(new TaskExecutionStatistics(1, 0))
+
+        then:
+        TextUtil.normaliseLineSeparators(textOutputFactory as String) == "{org.gradle.internal.buildevents.BuildResultLogger}{LIFECYCLE}1 actionable task: 1 executed, 0 avoided (0%)\n"
+    }
+
     def "reports statistics with rounded percentages"() {
         when:
         reporter.buildFinished(new TaskExecutionStatistics(2, 1))
