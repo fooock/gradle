@@ -28,7 +28,7 @@ class DaemonOutputToggleIntegrationTest extends DaemonIntegrationSpec {
 
         then:
         result.output.contains(":help")
-        result.output.contains("BUILD SUCCESSFUL")
+        result.output.contains("BUILD SUCCEEDED")
     }
 
     def "output is not received when toggle is on"() {
@@ -38,6 +38,6 @@ class DaemonOutputToggleIntegrationTest extends DaemonIntegrationSpec {
 
         then:
         !result.output.contains(":help")
-        !result.output.contains("BUILD SUCCESSFUL")
+        !result.output.contains("BUILD SUCCEEDED")
     }
 }

@@ -45,7 +45,7 @@ To see a list of command-line options, run gradle --help
 
 To see more detail about a task, run gradle help --task <task>
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "can print help for implicit tasks"() {
@@ -69,7 +69,7 @@ Description
 Group
      help
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "can print help for placeholder added tasks"() {
@@ -93,7 +93,7 @@ Description
 Group
      help
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "help for tasks same type different descriptions"() {
@@ -130,7 +130,7 @@ Descriptions
 Group
      -
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "help for tasks same type different groups"() {
@@ -175,7 +175,7 @@ Groups
      (:someproj1:hello) group of subproject task
      (:someproj2:hello) group of subproject task
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "matchingTasksOfSameType"() {
@@ -199,7 +199,7 @@ Description
 Group
      build
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
 
         when:
         run "help", "--task", "jar"
@@ -219,7 +219,7 @@ Description
 Group
      build
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
 
     }
 
@@ -269,7 +269,7 @@ Group
 
 ----------------------
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "error message contains possible candidates"() {
@@ -304,7 +304,7 @@ Description
 Group
      -
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
 
     }
 
@@ -347,7 +347,7 @@ Description
 Group
      -
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "listsCommonDynamicAvailableValues"() {
@@ -376,7 +376,7 @@ Description
 Group
      -
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def "sortsOptionsBySpecifiedOrder"() {

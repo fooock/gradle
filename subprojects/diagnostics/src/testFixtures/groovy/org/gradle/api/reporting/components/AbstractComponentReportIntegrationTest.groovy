@@ -33,7 +33,7 @@ abstract class AbstractComponentReportIntegrationTest extends AbstractIntegratio
 
     boolean outputMatches(String expectedOutput) {
         def actualOutput = result.normalizedOutput
-        String cleaned = actualOutput.substring(0, actualOutput.lastIndexOf("BUILD SUCCESSFUL"))
+        String cleaned = actualOutput.substring(0, actualOutput.lastIndexOf("BUILD SUCCEEDED"))
         cleaned = cleaned.replaceAll(/Download .*\n/, "")
         assert cleaned == expected(expectedOutput)
         return true

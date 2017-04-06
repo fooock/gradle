@@ -132,7 +132,7 @@ class TestProgressCrossVersionSpec extends ToolingApiSpecification {
         resultsOfLastListener.size() == 1
 
         and: "build execution is successful"
-        stdout.toString().contains("BUILD SUCCESSFUL")
+        stdout.toString().contains("BUILD SUCCEEDED")
     }
 
     @ToolingApiVersion(">=2.5")

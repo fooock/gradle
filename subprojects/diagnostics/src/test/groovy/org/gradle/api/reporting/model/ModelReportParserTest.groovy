@@ -65,7 +65,7 @@ BUILD SUCCESSFUsL
 5
 6
 + model
-BUILD SUCCESSFUL
+BUILD SUCCEEDED
 """)
         then:
         def ex = thrown(AssertionError)
@@ -79,7 +79,7 @@ BUILD SUCCESSFUL
 My Report
 ---------
 
-BUILD SUCCESSFUL
+BUILD SUCCEEDED
 """)
         expect:
         modelReport.title == 'My Report'
@@ -118,7 +118,7 @@ My Report
           | Value: \t uname
           | Type: \t java.lang.String
 
-BUILD SUCCESSFUL
+BUILD SUCCEEDED
 """)
 
         expect:
@@ -142,7 +142,7 @@ My Report
     | Value:  	C++ source 'lss:lss'
     | Creator: 	Rules#lss
 
-BUILD SUCCESSFUL
+BUILD SUCCEEDED
 """)
 
         expect:
@@ -196,7 +196,7 @@ My Report
     | password = hunter2
     | username = uname
 
-BUILD SUCCESSFUL
+BUILD SUCCEEDED
 """)
 
         expect:

@@ -26,7 +26,7 @@ class ModelReportParser {
     public static final int FIRST_NODE_LINE_NUMBER = 4
     public static final String NODE_LEFT_PADDING = '    '
     public static final String NODE_SYMBOL = '+'
-    public static final String END_OF_REPORT_MARKER = 'BUILD SUCCESSFUL'
+    public static final String END_OF_REPORT_MARKER = 'BUILD SUCCEEDED'
     public static final LinkedHashMap<String, String> NODE_ATTRIBUTES = ['Value': 'nodeValue', 'Type': 'type', 'Creator': 'creator']
 
     static ParsedModelReport parse(String text) {

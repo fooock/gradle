@@ -65,7 +65,7 @@ class ToolingApiIntegrationTest extends AbstractIntegrationSpec {
 
         then:
         stdOut.toString().contains("CONFIGURE SUCCESSFUL")
-        !stdOut.toString().contains("BUILD SUCCESSFUL")
+        !stdOut.toString().contains("BUILD SUCCEEDED")
     }
 
     def "tooling api uses the wrapper properties to determine which version to use"() {

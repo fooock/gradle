@@ -31,7 +31,7 @@ class ContinuousIntegrationTestFixtureTest extends Specification {
 Continuous build is an incubating feature.
 :sometask
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCEEDED in 1s
 
 Waiting for changes to input files of tasks... (ctrl-d then enter to exit)
 '''
@@ -71,7 +71,7 @@ BUILD FAILED in 0s
 Continuous build is an incubating feature.
 :sometask
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCEEDED in 1s
 
 Waiting for changes to input files of tasks... (ctrl-d then enter to exit)
 [info] play - Listening for HTTP on /0:0:0:0:0:0:0:0:49788
@@ -90,14 +90,14 @@ Waiting for changes to input files of tasks... (ctrl-d then enter to exit)
 Continuous build is an incubating feature.
 :sometask
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCEEDED in 1s
 
 Waiting for changes to input files of tasks... (ctrl-d then enter to exit)
 new file: /some/new/file.txt
 Change detected, executing build...
 :sometask
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCEEDED in 1s
 
 Waiting for changes to input files of tasks... (ctrl-d then enter to exit)
 '''

@@ -167,7 +167,7 @@ abstract class ContinuousBuildToolingApiSpecification extends ToolingApiSpecific
 
     private void waitForBuild() {
         ExecutionOutput executionOutput = waitUntilOutputContains containsString(WAITING_MESSAGE)
-        result = executionOutput.stdout.contains("BUILD SUCCESSFUL") ?
+        result = executionOutput.stdout.contains("BUILD SUCCEEDED") ?
                     new OutputScrapingExecutionResult(executionOutput.stdout, executionOutput.stderr) :
                     new OutputScrapingExecutionFailure(executionOutput.stdout, executionOutput.stderr)
     }

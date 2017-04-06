@@ -115,7 +115,7 @@ SampleBinary 'sampleBinary'
 
 Note: currently not all plugins register their components, so some components may not be visible here.
 
-BUILD SUCCESSFUL"""
+BUILD SUCCEEDED"""
     }
 
     def buildWithCustomBinaryPlugin() {

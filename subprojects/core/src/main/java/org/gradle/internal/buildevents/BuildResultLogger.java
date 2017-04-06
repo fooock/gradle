@@ -45,7 +45,7 @@ public class BuildResultLogger extends BuildAdapter {
         textOutput.println();
         String action = result.getAction().toUpperCase();
         if (result.getFailure() == null) {
-            textOutput.withStyle(Success).text(action + " SUCCESSFUL");
+            textOutput.withStyle(Success).text(action + " SUCCEEDED");
         } else {
             textOutput.withStyle(Failure).text(action + " FAILED");
         }

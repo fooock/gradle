@@ -22,15 +22,15 @@ import org.gradle.cli.CommandLineParser
 import org.gradle.internal.Factory
 import org.gradle.internal.jvm.Jvm
 import org.gradle.internal.logging.LoggingManagerInternal
-import org.gradle.internal.logging.services.LoggingServiceRegistry
+import org.gradle.internal.logging.events.OutputEventListener
 import org.gradle.internal.logging.progress.ProgressLoggerFactory
+import org.gradle.internal.logging.services.LoggingServiceRegistry
+import org.gradle.internal.logging.text.StreamingStyledTextOutput
 import org.gradle.internal.logging.text.StyledTextOutput
 import org.gradle.internal.logging.text.StyledTextOutputFactory
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.internal.service.ServiceRegistry
 import org.gradle.launcher.bootstrap.ExecutionListener
-import org.gradle.internal.logging.events.OutputEventListener
-import org.gradle.internal.logging.text.StreamingStyledTextOutput
 import org.gradle.test.fixtures.file.TestNameTestDirectoryProvider
 import org.gradle.util.GradleVersion
 import org.gradle.util.RedirectStdOutAndErr
@@ -129,12 +129,12 @@ class CommandLineActionFactoryTest extends Specification {
         action.execute(executionListener)
 
         then:
-        1 * loggingManager.setMaxWorkerCount(expectedMaxWorkerCount);
+        1 * loggingManager.setMaxWorkerCount(expectedMaxWorkerCount)
 
         where:
         expectedMaxWorkerCount | flags
-        1                      | []
-        1                      | ['--max-workers=4']
+        1                      | ['-Dorg.gradle.parallel='] // Very sadly, this is the only way to turn parallel mode off when it's on.
+        1                      | ['-Dorg.gradle.parallel=', '--max-workers=4']
         4                      | ['--parallel', '--max-workers=4']
         4                      | ['--parallel', '-Dorg.gradle.workers.max=4']
         6                      | ['--parallel', '--max-workers=6', '-Dorg.gradle.workers.max=4']
