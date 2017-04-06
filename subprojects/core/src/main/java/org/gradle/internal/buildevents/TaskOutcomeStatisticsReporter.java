@@ -15,27 +15,25 @@
  */
 package org.gradle.internal.buildevents;
 
-import com.google.common.base.Preconditions;
+import org.gradle.api.internal.tasks.execution.statistics.TaskExecutionStatistics;
+import org.gradle.api.internal.tasks.execution.statistics.TaskExecutionStatisticsListener;
 import org.gradle.api.logging.LogLevel;
 import org.gradle.internal.logging.text.StyledTextOutput;
 import org.gradle.internal.logging.text.StyledTextOutputFactory;
 
-public class TaskOutcomeStatisticsReporter {
+public class TaskOutcomeStatisticsReporter implements TaskExecutionStatisticsListener {
     private final StyledTextOutputFactory textOutputFactory;
 
     public TaskOutcomeStatisticsReporter(StyledTextOutputFactory textOutputFactory) {
         this.textOutputFactory = textOutputFactory;
     }
 
-    public void buildFinished(final int tasksAvoided, final int tasksExecuted) {
-        Preconditions.checkArgument(tasksAvoided >= 0, "tasksAvoided must be non-negative");
-        Preconditions.checkArgument(tasksExecuted >= 0, "tasksExecuted must be non-negative");
-
-        final int total = tasksAvoided + tasksExecuted;
+    public void buildFinished(final TaskExecutionStatistics statistics) {
+        final int total = statistics.getAvoidedTasksCount() + statistics.getExecutedTasksCount();
         if (total > 0) {
-            final long avoidedPercentage = Math.round(tasksAvoided * 100.0 / total);
+            final long avoidedPercentage = Math.round(statistics.getAvoidedTasksCount() * 100.0 / total);
             StyledTextOutput textOutput = textOutputFactory.create(BuildResultLogger.class, LogLevel.LIFECYCLE);
-            textOutput.formatln("%d actionable tasks: %d executed, %d avoided (%d%%)", total, tasksExecuted, tasksAvoided, avoidedPercentage);
+            textOutput.formatln("%d actionable tasks: %d executed, %d avoided (%d%%)", total, statistics.getExecutedTasksCount(), statistics.getAvoidedTasksCount(), avoidedPercentage);
         }
     }
 }

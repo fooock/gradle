@@ -18,17 +18,13 @@ package org.gradle.internal.buildevents;
 import org.gradle.BuildListener;
 import org.gradle.BuildResult;
 import org.gradle.StartParameter;
-import org.gradle.api.Task;
 import org.gradle.api.execution.TaskExecutionGraph;
 import org.gradle.api.execution.TaskExecutionGraphListener;
-import org.gradle.api.execution.TaskExecutionListener;
 import org.gradle.api.initialization.Settings;
 import org.gradle.api.internal.SettingsInternal;
 import org.gradle.api.internal.project.ProjectInternal;
-import org.gradle.api.internal.tasks.TaskStateInternal;
 import org.gradle.api.invocation.Gradle;
 import org.gradle.api.logging.Logger;
-import org.gradle.api.tasks.TaskState;
 import org.gradle.initialization.BuildRequestMetaData;
 import org.gradle.internal.logging.format.TersePrettyDurationFormatter;
 import org.gradle.internal.logging.text.StyledTextOutputFactory;
@@ -39,18 +35,14 @@ import java.util.List;
 /**
  * A {@link org.gradle.BuildListener} which logs the build progress.
  */
-public class BuildLogger implements BuildListener, TaskExecutionGraphListener, TaskExecutionListener {
+public class BuildLogger implements BuildListener, TaskExecutionGraphListener {
     private final Logger logger;
     private final List<BuildListener> resultLoggers = new ArrayList<BuildListener>();
-    private final TaskOutcomeStatisticsReporter taskOutcomeStatisticsReporter;
-    private int numAvoidedTasks;
-    private int numExecutedTasks;
 
     public BuildLogger(Logger logger, StyledTextOutputFactory textOutputFactory, StartParameter startParameter, BuildRequestMetaData requestMetaData) {
         this.logger = logger;
         resultLoggers.add(new BuildExceptionReporter(textOutputFactory, startParameter, requestMetaData.getClient()));
         resultLoggers.add(new BuildResultLogger(textOutputFactory, requestMetaData.getBuildTimeClock(), new TersePrettyDurationFormatter()));
-        taskOutcomeStatisticsReporter = new TaskOutcomeStatisticsReporter(textOutputFactory);
     }
 
     public void buildStarted(Gradle gradle) {
@@ -83,23 +75,9 @@ public class BuildLogger implements BuildListener, TaskExecutionGraphListener, T
         logger.info("Tasks to be executed: {}", graph.getAllTasks());
     }
 
-    public void beforeExecute(Task task) {
-        // do nothing
-    }
-
-    public void afterExecute(Task task, TaskState state) {
-        TaskStateInternal stateInternal = (TaskStateInternal) state;
-        if (stateInternal.getUpToDate()) {
-            numAvoidedTasks++;
-        } else if (stateInternal.isActionsWereExecuted()) {
-            numExecutedTasks++;
-        }
-    }
-
     public void buildFinished(BuildResult result) {
         for (BuildListener logger : resultLoggers) {
             logger.buildFinished(result);
         }
-        taskOutcomeStatisticsReporter.buildFinished(numAvoidedTasks, numExecutedTasks);
     }
 }

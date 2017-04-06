@@ -16,6 +16,7 @@
 
 package org.gradle.internal.buildevents
 
+import org.gradle.api.internal.tasks.execution.statistics.TaskExecutionStatistics
 import org.gradle.internal.logging.text.StyledTextOutputFactory
 import org.gradle.internal.logging.text.TestStyledTextOutputFactory
 import org.gradle.util.TextUtil
@@ -29,7 +30,7 @@ class TaskOutcomeStatisticsReporterTest extends Specification {
 
     def "does not report statistics given 0 tasks"() {
         when:
-        reporter.buildFinished(0, 0)
+        reporter.buildFinished(new TaskExecutionStatistics(0, 0))
 
         then:
         (textOutputFactory as String) == ""
@@ -38,7 +39,7 @@ class TaskOutcomeStatisticsReporterTest extends Specification {
 
     def "disallows negative task counts as input"() {
         when:
-        reporter.buildFinished(-1, 12)
+        reporter.buildFinished(new TaskExecutionStatistics(-1, 12))
 
         then:
         thrown IllegalArgumentException
@@ -46,7 +47,7 @@ class TaskOutcomeStatisticsReporterTest extends Specification {
 
     def "reports statistics with rounded percentages"() {
         when:
-        reporter.buildFinished(1, 2)
+        reporter.buildFinished(new TaskExecutionStatistics(2, 1))
 
         then:
         TextUtil.normaliseLineSeparators(textOutputFactory as String) == "{org.gradle.internal.buildevents.BuildResultLogger}{LIFECYCLE}3 actionable tasks: 2 executed, 1 avoided (33%)\n"
